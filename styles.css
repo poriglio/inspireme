@@ -7,20 +7,45 @@ SUBMIT FORM POPUP LIGHTBOX
 -=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 .lightbox{
-	position: fixed;
-	top: 0px;
-	left: 0px;
 	background-color: rgba(36,43,43,0.95);
-	height: 100%;
-	width: 100%;
+	position: fixed;
+    bottom: 0;
+    right: 0;
+	height: 100vh;
+	width: 100vw;
+	line-height: 100vh;
+	text-align: center;
 }
 
 .quote-form{
 	background-color: lemonchiffon;
+	vertical-align: middle;
+	position: relative;
+	display: inline-block;
+	line-height: initial;
+	width: 100%;
+	max-width: 600px;
+	text-align: left;
 }
+
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-==-=-=-*/
+
+/*-=-=-=-=-=-=-=-=
+RANDOM QUOTE BOX
+-=-=-=-=-=-=-=-=
+*/
+
+.random-display{
+	background-color: pink;
+}
+
+
 
 .quote-display{
 	border: 3px solid goldenrod;
+	margin: 10px;
+	padding: 10px;
 }
 
 .quote-form{

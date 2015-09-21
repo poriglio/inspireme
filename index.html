@@ -16,14 +16,24 @@
 				<p>Maybe I'm having a bad day. Maybe I could use a bit of a pick-me-up, and the array of positive self-talk in my head just isn't cutting it right now. Maybe I feel so rotten, I don't think anything you say will do jack shit for me, either. Take that as a challenge. Go ahead. Inspire me!</p>
 			</div>
 
-			<div ng-click="addQuoteForm()" class="quote-add-button">
-				<button>Submit Quote!</button>
+			<div class="quote-add-button">
+				<button ng-click="addQuoteForm()">Submit Quote!</button>
 			</div>
 
 			<div class="quote-random-button">
-				<button>View Random</button>
+				<button ng-click="viewRandom()">View Random</button>
 			</div>
 
+			<div class="quote-display random-display" ng-repeat="random in random" ng-show="randomShown">
+				<button ng-click="closeRandom()">X</button>
+				<button ng-click="deleteQuote()">Delete Quote</button>
+				<div>{{random.text}}</div>
+				<div>{{random.author}}</div>
+				<button>See more quotes by {{random.author}}</button>
+				<div>Submitted by {{random.username}}</div>
+				<div>{{random.rating}}</div>
+				<button>Vote up!</button>
+			</div>
 
 
 			<div class="lightbox" ng-show="formShown">
@@ -63,6 +73,7 @@
 			</div>
 			
 			<div class="quote-display" ng-repeat="quote in quotes">
+				<button ng-click="deleteQuote($index)">Delete Quote</button>
 				<div>{{quote.text}}</div>
 				<div>{{quote.author}}</div>
 				<button>See more quotes by {{quote.author}}</button>
@@ -70,6 +81,7 @@
 				<div>{{quote.rating}}</div>
 				<button>Vote up!</button>
 			</div>
+
 
 			<script src="script.js"></script>
 

@@ -5,7 +5,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 	Quote = function (text,author,rating,username) {
 		this.text = text;
 		this.author = author;
-		this.rating = rating || 0;
+		this.rating = rating || "";
 		this.username = username || "";
 	}
 
@@ -29,6 +29,25 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 
 	$scope.closeForm = function ( $event ) {
 		$scope.formShown = false;
+	}
+
+	$scope.viewRandom = function ( $event ){
+
+		$scope.randomShown = true;
+		var randomIndex = $scope.quotes.length;
+		randomIndex = Math.floor(randomIndex*Math.random());
+		console.log(randomIndex);
+		$scope.random = []
+		$scope.random.push($scope.quotes[randomIndex])
+		console.log($scope.random)
+	}
+
+	$scope.closeRandom = function ( $event ){
+		$scope.randomShown = false;
+	}
+
+	$scope.deleteQuote = function ($index) {
+		$scope.quotes.splice($index,1);
 	}
 
 }])
