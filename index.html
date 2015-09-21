@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-	<html>
+	<html ng-app="quoteModule">
+		
 		<head>
 			<title>Inspire Me!</title>
 			<meta charset="utf-8">
@@ -7,9 +8,70 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 		</head>
-		<body>
-			<h1>Inspire Me!</h1>
-			<p>Maybe I'm having a bad day. Maybe I could use a bit of a pick-me-up, and the array of positive self-talk in my head just isn't cutting it right now. Maybe I feel so rotten, I don't think anything you say will do jack shit for me, either. Take that as a challenge. Go ahead. Inspire me!</p>
+
+		<body ng-controller="quoteController">
+			
+			<div class="intro">
+				<h1>Inspire Me!</h1>
+				<p>Maybe I'm having a bad day. Maybe I could use a bit of a pick-me-up, and the array of positive self-talk in my head just isn't cutting it right now. Maybe I feel so rotten, I don't think anything you say will do jack shit for me, either. Take that as a challenge. Go ahead. Inspire me!</p>
+			</div>
+
+			<div ng-click="addQuoteForm()" class="quote-add-button">
+				<button>Submit Quote!</button>
+			</div>
+
+			<div class="quote-random-button">
+				<button>View Random</button>
+			</div>
+
+
+
+			<div class="lightbox" ng-show="formShown">
+				<div class="quote-form">
+					<button ng-click="closeForm()">X</button>
+				
+					<form>
+						<table>
+							<tr>
+								<td>
+									Your name:
+								</td>
+								<td>
+									<input type="text">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Quote:
+								</td>
+								<td>
+									<input type="text">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Author:
+								</td>
+								<td>
+									<input type="text">
+								</td>
+							</tr>
+						</table>
+						<button>Submit</button>
+					</form>
+				</div>
+			</div>
+			
+			<div class="quote-display" ng-repeat="quote in quotes">
+				<div>{{quote.text}}</div>
+				<div>{{quote.author}}</div>
+				<button>See more quotes by {{quote.author}}</button>
+				<div>Submitted by {{quote.username}}</div>
+				<div>{{quote.rating}}</div>
+				<button>Vote up!</button>
+			</div>
+
 			<script src="script.js"></script>
+
 		</body>
 	</html>

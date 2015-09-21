@@ -1,3 +1,28 @@
 body{
 	background-color: lemonchiffon;
 }
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=
+SUBMIT FORM POPUP LIGHTBOX
+-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+.lightbox{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(36,43,43,0.95);
+	height: 100%;
+	width: 100%;
+}
+
+.quote-form{
+	background-color: lemonchiffon;
+}
+
+.quote-display{
+	border: 3px solid goldenrod;
+}
+
+.quote-form{
+	border: 3px solid goldenrod;	
+}
