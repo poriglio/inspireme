@@ -17,7 +17,7 @@ SUBMIT FORM POPUP LIGHTBOX
 	text-align: center;
 }
 
-.quote-form{
+.smallLightbox{
 	background-color: lemonchiffon;
 	vertical-align: middle;
 	position: relative;
@@ -29,12 +29,14 @@ SUBMIT FORM POPUP LIGHTBOX
 }
 
 /*=-=-=-=-=-=-=-=-=-=-=-=-=-
--=-=-=-=-=-=-=-=-=-==-=-=-*/
+-=-=-=-=-=-=-=-=-=-==-=-=-
 
-/*-=-=-=-=-=-=-=-=
-RANDOM QUOTE BOX
--=-=-=-=-=-=-=-=
-*/
+AUTHOR LIGHTBOX*/
+
+.authorPage{
+	height: 100vh;
+}
+
 
 .random-display{
 	background-color: pink;
@@ -48,6 +50,6 @@ RANDOM QUOTE BOX
 	padding: 10px;
 }
 
-.quote-form{
+.border{
 	border: 3px solid goldenrod;	
 }

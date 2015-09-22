@@ -19,9 +19,10 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 	var default8 = new Quote("To say 'I love you' one must first be able to say the 'I'.","Ayn Rand",2)
 	var default9 = new Quote("I guess when you turn off the main road, you have to be prepared to see some funny houses.","Stephen King",2)
 	var default10 = new Quote("No, it's not a very good story - its author was too busy listening to other voices to listen as closely as he should have to the one coming from inside.","Stephen King",4)
+	var default11 = new Quote("Why is the Internet such a mess?","Raphael",5)
 
 		
-	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10]
+	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
 
 	$scope.addQuoteForm = function ( $event ) {
 		$scope.formShown = true;
@@ -36,18 +37,51 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 		$scope.randomShown = true;
 		var randomIndex = $scope.quotes.length;
 		randomIndex = Math.floor(randomIndex*Math.random());
-		console.log(randomIndex);
 		$scope.random = []
 		$scope.random.push($scope.quotes[randomIndex])
-		console.log($scope.random)
 	}
 
 	$scope.closeRandom = function ( $event ){
 		$scope.randomShown = false;
 	}
 
+
+	$scope.submitQuote = function ( ) {
+		$scope.formShown = false;
+		var newQuote = new Quote($scope.text,$scope.author,"0",$scope.username)
+		$scope.quotes.push(newQuote)
+		$scope.text = "";
+		$scope.author = "";
+		$scope.username = "";
+	}
+
+	var deletedQuotes = [];
+
 	$scope.deleteQuote = function ($index) {
+		deletedQuotes.push($scope.quotes[$index]);
 		$scope.quotes.splice($index,1);
+	}
+
+	$scope.undoDelete = function ( ) {
+		if(deletedQuotes.length>0){
+		$scope.quotes.push(deletedQuotes[deletedQuotes.length-1]);
+		deletedQuotes.pop();
+		}
+	}
+
+	$scope.openAuthor = function ($index) {
+		$scope.author = $scope.quotes[$index].author;
+		$scope.authorList = $scope.quotes.filter(function(element,index,array){
+			if(element.author === array[$index].author ){
+				return true
+			}
+		}) 
+		console.log($scope.authorList)
+		$scope.authorShow = true;
+	}
+
+	$scope.closeAuthor = function () {
+		$scope.authorShow = false;
 	}
 
 }])
