@@ -10,48 +10,91 @@
 		</head>
 
 		<body ng-controller="quoteController">
-			<div class="content-background">
+
+
+		<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+		HEADING AND MAIN NAVIGATION
+		-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
+			<div class="centering-container content-background">
 				<div class="intro">
 					<h1>Inspire Me!</h1>
 				</div>
+			</div>
+			<div ng-hide="hideHomepage" class="content-background">
+				
+				<div class="heading-content">
 
-				<div class="quote-undo-button">
-					<button ng-click="undoDelete()">Undo</button>
+					<div class="quote-undo-button heading-button">
+						<button class="button" ng-click="undoDelete()">Undo</button>
+					</div>
+
+					<div class="quote-add-button heading-button">
+						<button class="button" ng-click="addQuoteForm()">Submit Quote!</button>
+					</div>
+					<div class="quote-random-button heading-button">
+						<button class="button" ng-click="viewRandom()">View Random</button>
+					</div>
 				</div>
 
-				<div class="quote-add-button">
-					<button ng-click="addQuoteForm()">Submit Quote!</button>
-				</div>
-
-				<div class="quote-random-button">
-					<button ng-click="viewRandom()">View Random</button>
-				</div>
+				<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+				RANDOM QUOTE DISPLAY
+				-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
 				<div class="quote-display random-display border" ng-repeat="random in random" ng-show="randomShown">
-					<button ng-click="closeRandom()">X</button>
-					<button ng-click="deleteQuote()">Delete Quote</button>
+					<button class="button"ng-click="closeRandom()">X</button>
+					<button class="button" ng-click="deleteQuote()">Delete Quote</button>
 					<div>{{random.text}}</div>
 					<div>{{random.author}}</div>
-					<button>See more quotes by {{random.author}}</button>
+					<button class="button">See more quotes by {{random.author}}</button>
 					<div>Submitted by {{random.username}}</div>
 					<div>{{random.rating}}</div>
-					<button>Vote up!</button>
 				</div>
+
+				<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+				MAIN QUOTE
+				-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
 				<div class="quote-display border" ng-repeat="quote in quotes">
-					<button ng-click="deleteQuote($index)">Delete Quote</button>
 					<div>{{quote.text}}</div>
 					<div>{{quote.author}}</div>
-					<button ng-click="openAuthor($index)">See more quotes by {{quote.author}}</button>
 					<div>Submitted by {{quote.username}}</div>
 					<div>{{quote.rating}}</div>
-					<button>Vote up!</button>
+					<div class="centering-container">
+						<button class="button" ng-click="openAuthor($index)">See more quotes by {{quote.author}}</button>
+						<button class="button" ng-click="deleteQuote($index)">Delete Quote</button>
+					</div>
+
+					<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+					STAR RATING SYSTEM
+					-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
+					<div class="centering-container">
+						<div class="idle-stars centering-container">
+							<div class="star" ng-repeat="star in stars">
+								<img ng-click="showStars($index)"  src="staridle.png">
+								<span>{{star}}</span>
+							</div>
+							<div class="active-stars">
+								<div class="star" ng-click="hideStars($index)" ng-show="activeStarsShown" ng-repeat="star in stars" class="centering-container">
+									<img src="staractive.png">
+										<span>{{star}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+					
+				
 			</div>
 
+			<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+			QUOTE SUBMIT FORM
+			-=-=-=-=-=-=-=-=-=-=-=-=-=- -->			
 
-			<div class="lightbox" ng-show="formShown">
-				<div class="smallLightbox border">
-					<button ng-click="closeForm()">X</button>
+			<div class="quote-submit-page" ng-show="formShown">
+				<div class="form-display">
+					<button class="button" ng-click="closeForm()">X</button>
 					<form>
 						<table>
 							<tr>
@@ -79,22 +122,23 @@
 								</td>
 							</tr>
 						</table>
-						<button ng-click="submitQuote()">Submit</button>
+						<button class="button" ng-click="submitQuote()">Submit</button>
 					</form>
 				</div>
 			</div>
 			
+			<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+			QUOTES BY AUTHOR
+			-=-=-=-=-=-=-=-=-=-=-=-=-=- -->			
 
-			<div class="lightbox" ng-show="authorShow">
-				<div class="authorPage smallLightbox">
-					<button ng-click="closeAuthor()">X</button>
-					<h1>Quotes by {{author}}</h1>
-						<div class="authorQuote border" ng-repeat="quote in authorList">
-							<button ng-click="deleteQuote($index)">Delete Quote</button>
+			<div class="author-page" ng-show="authorShow">
+				<div>
+					<button class="button" ng-click="closeAuthor()">X</button>
+					<h2>Quotes by {{author}}</h2>
+						<div class="author-quote" ng-repeat="quote in authorList">
+							<button class="button" ng-click="deleteQuote($index)">Delete Quote</button>
 							<div>{{quote.text}}</div>
 							<div>Submitted by {{quote.username}}</div>
-							<div>{{quote.rating}}</div>
-							<button>Vote up!</button>
 						</div>
 					</div>
 				</div>

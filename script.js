@@ -2,7 +2,7 @@ angular.module("quoteModule", [])
 
 angular.module("quoteModule").controller("quoteController",["$scope", function($scope){
 
-	Quote = function (text,author,rating,username) {
+	var Quote = function (text,author,rating,username) {
 		this.text = text;
 		this.author = author;
 		this.rating = rating || "";
@@ -26,10 +26,12 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 
 	$scope.addQuoteForm = function ( $event ) {
 		$scope.formShown = true;
+		$scope.hideHomepage = true;
 	}
 
 	$scope.closeForm = function ( $event ) {
 		$scope.formShown = false;
+		$scope.hideHomepage = false;
 	}
 
 	$scope.viewRandom = function ( $event ){
@@ -53,6 +55,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 		$scope.text = "";
 		$scope.author = "";
 		$scope.username = "";
+		$scope.hideHomepage = false;
 	}
 
 	var deletedQuotes = [];
@@ -78,10 +81,22 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 		}) 
 		console.log($scope.authorList)
 		$scope.authorShow = true;
+		$scope.hideHomepage = true;
 	}
 
 	$scope.closeAuthor = function () {
 		$scope.authorShow = false;
+		$scope.hideHomepage = false;
+	}
+
+	$scope.stars = [""," ","  ","   ","    "]
+
+	$scope.showStars = function ($index){
+			$scope.activeStarsShown = true;
+	}
+
+	$scope.hideStars = function($index){
+		$scope.activeStarsShown = false;
 	}
 
 }])
