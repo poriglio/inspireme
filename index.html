@@ -10,39 +10,48 @@
 		</head>
 
 		<body ng-controller="quoteController">
-			
-			<div class="intro">
-				<h1>Inspire Me!</h1>
-			</div>
+			<div class="content-background">
+				<div class="intro">
+					<h1>Inspire Me!</h1>
+				</div>
 
-			<div class="quote-undo-button">
-				<button ng-click="undoDelete()">Undo</button>
-			</div>
+				<div class="quote-undo-button">
+					<button ng-click="undoDelete()">Undo</button>
+				</div>
 
-			<div class="quote-add-button">
-				<button ng-click="addQuoteForm()">Submit Quote!</button>
-			</div>
+				<div class="quote-add-button">
+					<button ng-click="addQuoteForm()">Submit Quote!</button>
+				</div>
 
-			<div class="quote-random-button">
-				<button ng-click="viewRandom()">View Random</button>
-			</div>
+				<div class="quote-random-button">
+					<button ng-click="viewRandom()">View Random</button>
+				</div>
 
-			<div class="quote-display random-display border" ng-repeat="random in random" ng-show="randomShown">
-				<button ng-click="closeRandom()">X</button>
-				<button ng-click="deleteQuote()">Delete Quote</button>
-				<div>{{random.text}}</div>
-				<div>{{random.author}}</div>
-				<button>See more quotes by {{random.author}}</button>
-				<div>Submitted by {{random.username}}</div>
-				<div>{{random.rating}}</div>
-				<button>Vote up!</button>
+				<div class="quote-display random-display border" ng-repeat="random in random" ng-show="randomShown">
+					<button ng-click="closeRandom()">X</button>
+					<button ng-click="deleteQuote()">Delete Quote</button>
+					<div>{{random.text}}</div>
+					<div>{{random.author}}</div>
+					<button>See more quotes by {{random.author}}</button>
+					<div>Submitted by {{random.username}}</div>
+					<div>{{random.rating}}</div>
+					<button>Vote up!</button>
+				</div>
+				<div class="quote-display border" ng-repeat="quote in quotes">
+					<button ng-click="deleteQuote($index)">Delete Quote</button>
+					<div>{{quote.text}}</div>
+					<div>{{quote.author}}</div>
+					<button ng-click="openAuthor($index)">See more quotes by {{quote.author}}</button>
+					<div>Submitted by {{quote.username}}</div>
+					<div>{{quote.rating}}</div>
+					<button>Vote up!</button>
+				</div>
 			</div>
 
 
 			<div class="lightbox" ng-show="formShown">
 				<div class="smallLightbox border">
 					<button ng-click="closeForm()">X</button>
-				
 					<form>
 						<table>
 							<tr>
@@ -75,15 +84,6 @@
 				</div>
 			</div>
 			
-			<div class="quote-display border" ng-repeat="quote in quotes">
-				<button ng-click="deleteQuote($index)">Delete Quote</button>
-				<div>{{quote.text}}</div>
-				<div>{{quote.author}}</div>
-				<button ng-click="openAuthor($index)">See more quotes by {{quote.author}}</button>
-				<div>Submitted by {{quote.username}}</div>
-				<div>{{quote.rating}}</div>
-				<button>Vote up!</button>
-			</div>
 
 			<div class="lightbox" ng-show="authorShow">
 				<div class="authorPage smallLightbox">
