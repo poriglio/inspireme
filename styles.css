@@ -16,6 +16,23 @@ body{
 	background-attachment: fixed;
 }
 
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+BACKGROUND IMAGE RESPONSIVENESS
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+.set-to-width{
+	background-size: 100vw;
+}
+
+.set-to-height{
+	background-size: cover;
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=*/
+/*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=*/
+
+
+
 .content-background{
 	background: rgba(39,110,136,0.8);
 	height: 100%;

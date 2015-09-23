@@ -104,16 +104,33 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	console.log($window.innerHeight)
 	console.log($window.innerWidth)
 
-	$scope.backgroundClass = function(){
+	// $scope.backgroundClass = function(){
+	// 	$scope.ratio = $window.innerWidth / $window.innerHeight
+	// 	console.log($scope.ratio)
+	// 	if($scope.ratio > 1.6175){
+	// 		$scope.backgroundSize = "set-to-width";
+	// 		console.log("blah")
+	// 	}
+	// 	else if($scope.ratio < 1.6175){
+	// 		$scope.backgroundSize = "set-to-height";
+	// 		console.log("blargh")
+	// 	}
+	// }
+
+		$scope.$watch(function(){return $window.innerWidth / $window.innerHeight},function(){
 		$scope.ratio = $window.innerWidth / $window.innerHeight
 		console.log($scope.ratio)
 		if($scope.ratio > 1.6175){
-			// set size to 100 vw
+			$scope.backgroundSize = "set-to-width";
+			console.log("blah")
 		}
 		else if($scope.ratio < 1.6175){
-			// set size to 100 vh
+			$scope.backgroundSize = "set-to-height";
+			console.log("blargh")
 		}
-	}
+	})
+
+
 
 
 }])
