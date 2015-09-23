@@ -41,7 +41,7 @@
 				RANDOM QUOTE DISPLAY
 				-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
-				<div class="quote-display random-display border" ng-repeat="random in random" ng-show="randomShown">
+				<div class="quote-display random-display" ng-repeat="random in random" ng-show="randomShown">
 					<button class="button"ng-click="closeRandom()">X</button>
 					<button class="button" ng-click="deleteQuote()">Delete Quote</button>
 					<div>{{random.text}}</div>
