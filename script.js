@@ -1,6 +1,6 @@
 angular.module("quoteModule", [])
 
-angular.module("quoteModule").controller("quoteController",["$scope", function($scope){
+angular.module("quoteModule").controller("quoteController",["$scope", "$window", function($scope,$window){
 
 	var Quote = function (text,author,rating,username) {
 		this.text = text;
@@ -89,14 +89,31 @@ angular.module("quoteModule").controller("quoteController",["$scope", function($
 		$scope.hideHomepage = false;
 	}
 
-	$scope.stars = [""," ","  ","   ","    "]
+	$scope.idleStars = [""," ","  ","   ","    "];
 
 	$scope.showStars = function ($index){
-			$scope.activeStarsShown = true;
+			$scope.activeStars = [""," ","  ","   ","    "];
+			$scope.activeStars = $scope.activeStars.filter(function(element,index){
+				if($index >= index){
+					return true
+				}
+			})
+			$scope.starsShown = true;		
 	}
 
-	$scope.hideStars = function($index){
-		$scope.activeStarsShown = false;
+	console.log($window.innerHeight)
+	console.log($window.innerWidth)
+
+	$scope.backgroundClass = function(){
+		$scope.ratio = $window.innerWidth / $window.innerHeight
+		console.log($scope.ratio)
+		if($scope.ratio > 1.6175){
+			// set size to 100 vw
+		}
+		else if($scope.ratio < 1.6175){
+			// set size to 100 vh
+		}
 	}
+
 
 }])

@@ -18,7 +18,7 @@
 
 			<div class="centering-container content-background">
 				<div class="intro">
-					<h1>Inspire Me!</h1>
+					<h1 ng-click="backgroundClass()">Inspire Me!</h1>
 				</div>
 			</div>
 			<div ng-hide="hideHomepage" class="content-background">
@@ -41,7 +41,7 @@
 				RANDOM QUOTE DISPLAY
 				-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
-				<div class="quote-display random-display" ng-repeat="random in random" ng-show="randomShown">
+				<div class="quote-display random-quote" ng-repeat="random in random" ng-show="randomShown">
 					<button class="button"ng-click="closeRandom()">X</button>
 					<button class="button" ng-click="deleteQuote()">Delete Quote</button>
 					<div>{{random.text}}</div>
@@ -70,15 +70,15 @@
 					-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
 					<div class="centering-container">
-						<div class="idle-stars centering-container">
-							<div class="star" ng-repeat="star in stars">
-								<img ng-click="showStars($index)"  src="staridle.png">
+						<div class="idle-stars star centering-container">
+							<div ng-click="showStars($index)" class="star" ng-repeat="star in idleStars">
+								<img src="staridle.png">
 								<span>{{star}}</span>
 							</div>
 							<div class="active-stars">
-								<div class="star" ng-click="hideStars($index)" ng-show="activeStarsShown" ng-repeat="star in stars" class="centering-container">
+								<div class="star" ng-click="showStars($index)" ng-show="starsShown" ng-repeat="star in activeStars" class="centering-container">
 									<img src="staractive.png">
-										<span>{{star}}</span>
+									<span>{{star}}</span>
 								</div>
 							</div>
 						</div>

@@ -22,8 +22,6 @@ body{
 	width: 100%;
 	max-width: 670px;
 	margin: auto;
-/*	height: 100%;
-	min-height: 100vh;*/
 }
 
 .heading-content{
@@ -124,51 +122,24 @@ STARS
 
 .idle-stars{
 	position: relative;
-	display: inline-block;
 }
 
 .active-stars{
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	z-index: 10;
 }
 
 .star{
 	display: inline-block;
 }
 
-/*-=-=-=-=-=-=-=-=
-ADDITIONAL PAGES
--=-=-=-=-=-=-==-*/
+/*-=-=-=-=-=-=-
+RANDOM DISPLAY
+-=-=--=-=-=-=-*/
 
-
-/*.lightbox{
-	background-color: rgba(36,43,43,0.95);
-	position: fixed;
-    bottom: 0;
-    right: 0;
-	height: 100vh;
-	width: 100vw;
-	line-height: 100vh;
-	text-align: center;
-}
-
-.smallLightbox{
-	background-color: lemonchiffon;
-	vertical-align: middle;
-	position: relative;
-	display: inline-block;
-	line-height: initial;
-	width: 100%;
-	max-width: 600px;
-	text-align: left;
-}*/
-
-/*.authorPage{
-	height: 100vh;
-}*/
-
-.random-display{
+.random-quote{
 	background-color: rgba(173,217,202,0.8);
 	border-color: rgb(51,90,117);
 }
