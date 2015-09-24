@@ -7,6 +7,7 @@ MAIN PAGE
 	color: rgb(255,255,220);
 	margin: 0px;
 	padding: 0px;
+	text-decoration: none;
 }
 
 body{
@@ -138,7 +139,7 @@ BUTTONS
 
 .button{
 	font-size: 0.8rem;
-	background: rgb(255,183,77);
+	background-color: rgb(255,183,77);
 	padding: 9px 18px;
 	color: rgb(255,255,255);
 	margin: 10px 5px 10px 5px;
@@ -171,4 +172,8 @@ USEFUL ANYWHERE
 
 .centering-container{
 	text-align: center;
+}
+
+.initial-hide{
+	display: none;
 }

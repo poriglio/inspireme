@@ -40,6 +40,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	$scope.addQuoteForm = function ( $event ) {
 		$scope.formShown = true;
 		$scope.randomShown = false;
+		$scope.authorShow = false;
 	}
 
 	$scope.closeForm = function ( $event ) {
@@ -65,13 +66,23 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 
 	$scope.submitQuote = function ( ) {
 		$scope.formShown = false;
-		var newQuote = new Quote($scope.text,$scope.author,"0",$scope.username)
+		var newQuote = new Quote($scope.text,$scope.author,$scope.rating,$scope.username)
 		$scope.quotes.push(newQuote)
 		$scope.text = "";
 		$scope.author = "";
 		$scope.username = "";
+		$scope.rating = "";
 		$scope.hideHomepage = false;
 		$scope.authorShow = false;
+		console.log($scope.quotes);
+		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+			if(a.rating > b.rating){
+				return -1;
+			}
+			else{
+				return 1;
+			}
+		})
 	}
 
 	var deletedQuotes = [];
@@ -88,7 +99,13 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		}
 	}
 
+	$scope.authorShow = false;
+	$scope.formShown = false; 
+	$scope.randomShown = false;
+
 	$scope.openAuthor = function ($index) {
+		$scope.formShown = false;
+		$scope.randomShown = false;
 		$scope.author = $scope.quotes[$index].author;
 		$scope.authorList = $scope.quotes.filter(function(element,index,array){
 			if(element.author === array[$index].author ){
@@ -97,8 +114,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		}) 
 		console.log($scope.authorList)
 		$scope.authorShow = true;
-		$scope.formShown = false;
-		$scope.randomShown = false;
 	}
 
 	$scope.closeAuthor = function () {
