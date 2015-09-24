@@ -97,6 +97,15 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.quotes.push(deletedQuotes[deletedQuotes.length-1]);
 		deletedQuotes.pop();
 		}
+		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+		if(a.rating > b.rating){
+			return -1;
+		}
+		else{
+			return 1;
+		}
+	})
+
 	}
 
 	$scope.openAuthorRandom = function ($index){
