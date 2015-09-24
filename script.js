@@ -22,11 +22,24 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	var default11 = new Quote("Why is the Internet such a mess?","Raphael",5)
 
 		
+	// $scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
+
+	$scope.quotesUnsorted = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
+
 	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
+
+	$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+		if(a.rating > b.rating){
+			return -1;
+		}
+		else{
+			return 1;
+		}
+	})
 
 	$scope.addQuoteForm = function ( $event ) {
 		$scope.formShown = true;
-		$scope.hideHomepage = true;
+		$scope.randomShown = false;
 	}
 
 	$scope.closeForm = function ( $event ) {
@@ -41,6 +54,8 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		randomIndex = Math.floor(randomIndex*Math.random());
 		$scope.random = []
 		$scope.random.push($scope.quotes[randomIndex])
+		$scope.formShown = false;
+		$scope.authorShow = false;
 	}
 
 	$scope.closeRandom = function ( $event ){
@@ -56,6 +71,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.author = "";
 		$scope.username = "";
 		$scope.hideHomepage = false;
+		$scope.authorShow = false;
 	}
 
 	var deletedQuotes = [];
@@ -81,12 +97,12 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		}) 
 		console.log($scope.authorList)
 		$scope.authorShow = true;
-		$scope.hideHomepage = true;
+		$scope.formShown = false;
+		$scope.randomShown = false;
 	}
 
 	$scope.closeAuthor = function () {
 		$scope.authorShow = false;
-		$scope.hideHomepage = false;
 	}
 
 	$scope.idleStars = [""," ","  ","   ","    "];
@@ -101,34 +117,19 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 			$scope.starsShown = true;		
 	}
 
-	console.log($window.innerHeight)
-	console.log($window.innerWidth)
+	// console.log($window.innerHeight)
+	// console.log($window.innerWidth)
 
-	// $scope.backgroundClass = function(){
+	// 	$scope.$watch(function(){return $window.innerWidth / $window.innerHeight},function(){
 	// 	$scope.ratio = $window.innerWidth / $window.innerHeight
 	// 	console.log($scope.ratio)
 	// 	if($scope.ratio > 1.6175){
 	// 		$scope.backgroundSize = "set-to-width";
-	// 		console.log("blah")
 	// 	}
 	// 	else if($scope.ratio < 1.6175){
 	// 		$scope.backgroundSize = "set-to-height";
-	// 		console.log("blargh")
 	// 	}
-	// }
-
-		$scope.$watch(function(){return $window.innerWidth / $window.innerHeight},function(){
-		$scope.ratio = $window.innerWidth / $window.innerHeight
-		console.log($scope.ratio)
-		if($scope.ratio > 1.6175){
-			$scope.backgroundSize = "set-to-width";
-			console.log("blah")
-		}
-		else if($scope.ratio < 1.6175){
-			$scope.backgroundSize = "set-to-height";
-			console.log("blargh")
-		}
-	})
+	// })
 
 
 
