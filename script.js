@@ -24,7 +24,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 
 	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
 
-	console.log($scope.quotes)
 
 	$scope.quotesSorted = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
@@ -56,8 +55,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.random = [];
 		$scope.random.push($scope.quotes[$scope.randomIndex]);
 		$index = $scope.randomIndex
-		console.log($index)
-		console.log($scope.randomIndex)
 	}
 
 	$scope.closeRandom = function ( $event ){
@@ -87,6 +84,28 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 
 	var deletedQuotes = [];
 
+	$scope.deleteAuthorQuote = function($index){
+		$scope.authorList = $scope.quotes.filter(function(element,index,array){
+			if(element.author === $scope.storeAuthor ){
+				return true
+			}
+		})
+	}
+
+	$scope.deleteRandomQuote = function($index){
+		$scope.randomShown = false;
+		$index = $scope.randomIndex;
+		$scope.deleteQuote($index);
+		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+		if(a.rating > b.rating){
+			return -1;
+		}
+		else{
+			return 1;
+		}
+	})
+	}
+
 	$scope.deleteQuote = function ($index) {
 		deletedQuotes.push($scope.quotes[$index]);
 		$scope.quotes.splice($index,1);
@@ -96,7 +115,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		if(deletedQuotes.length>0){
 		$scope.quotes.push(deletedQuotes[deletedQuotes.length-1]);
 		deletedQuotes.pop();
-		}
 		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
 			return -1;
@@ -105,18 +123,17 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 			return 1;
 		}
 	})
-
+		}
 	}
 
 	$scope.openAuthorRandom = function ($index){
 		$index = $scope.randomIndex
-		console.log($index)
-		console.log($scope.randomIndex)
 		$scope.openAuthor($index)
 	}
 
 	$scope.openAuthor = function ($index) {
-		console.log("------" + $index + "--------");
+		$scope.storeAuthor = $scope.quotes[$index].author;
+		console.log($scope.storeAuthor);
 		$scope.authorShow = true;
 		$scope.formShown = false;
 		$scope.randomShown = false;
@@ -125,7 +142,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 			if(element.author === array[$index].author ){
 				return true
 			}
-		}) 
+		})
 	}
 
 	$scope.closeAuthor = function () {

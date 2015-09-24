@@ -41,7 +41,7 @@
 	</div>
 	<div class="random-quote quote-display" ng-repeat="quote in authorList">
 		<div>"{{quote.text}}"</div>
-		<button class="button" ng-click="deleteQuote($index)">Delete Quote</button>
+		<button class="button" ng-click="deleteAuthorQuote($index)">Delete Quote</button>
 		<div>Submitted by: {{quote.username}}
 		<div class="centering-container">
 			<div class="idle-stars star centering-container">
@@ -70,7 +70,7 @@
 					<div>"{{random.text}}"</div>
 					<div class="align-right">-{{random.author}}</div>
 						<div class="centering-container"><button class="button" ng-click="openAuthorRandom($index)"><a href="#">See more quotes by {{random.author}}</a></button>
-						<button class="button" ng-click="deleteQuote()">Delete Quote</button>
+						<button class="button" ng-click="deleteRandomQuote()">Delete Quote</button>
 					</div>
 					<div>Submitted by: {{random.username}}</div>
 					<div class="centering-container">
