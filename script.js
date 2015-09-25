@@ -7,7 +7,31 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		this.author     = author
 		this.rating     = rating || ""
 		this.username   = username || ""
+		this.stars      = this.starify()
 	}
+
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	// starify method on an object in quotes array
+	// will return an array with the same number
+	// of stars as the rating number
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+	Quote.prototype.starify = function(quote){
+		var starsArray = [""," ","  ","   ","    "];
+		starsArray = starsArray.filter(function(element,index){
+			if(index<this.rating){
+				return true
+			}
+		},this)
+		return starsArray
+	}
+
+	$scope.starsShown = true;
+
+	// -=-=-=-=-=-=-=-=-=
+	// end starify method
+	// -=-=-=-=-=-=-=-=-=
+
 
 
 	var default1 = new Quote("Vanity and pride are different things, though the words are often used synonymously. A person may be proud without being vain. Pride relates more to our opinion of ourselves; vanity, to what we would have others think of us.","Jane Austen",5)
@@ -23,7 +47,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	var default11 = new Quote("Why is the Internet such a mess?","Raphael",5)
 
 	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
-
 
 	$scope.quotesSorted = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
@@ -133,7 +156,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 
 	$scope.openAuthor = function ($index) {
 		$scope.storeAuthor = $scope.quotes[$index].author;
-		console.log($scope.storeAuthor);
 		$scope.authorShow = true;
 		$scope.formShown = false;
 		$scope.randomShown = false;
