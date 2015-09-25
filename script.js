@@ -26,8 +26,6 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		return starsArray
 	}
 
-	$scope.starsShown = true;
-
 	// -=-=-=-=-=-=-=-=-=
 	// end starify method
 	// -=-=-=-=-=-=-=-=-=
@@ -174,13 +172,24 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	$scope.idleStars = [""," ","  ","   ","    "];
 
 	$scope.showStars = function ($index){
-			$scope.activeStars = [""," ","  ","   ","    "];
-			$scope.activeStars = $scope.activeStars.filter(function(element,index){
-				if($index >= index){
-					return true
-				}
-			})
-			$scope.starsShown = true;		
+		$scope.newRating = $index + 1
 	}
+
+// -=-=-=-=-=-=-=
+// RATE ME BUTTON
+// -=-=-=-=-=-=-=
+
+$scope.rateQuote = function ($index){
+	$scope.ratingBox = !$scope.ratingBox
+	console.log($index)
+}
+	
+$scope.submitRating = function($index){
+	$scope.ratingBox = false;
+}
+
+// -=-=-=-=-=-=-=-=-=
+// END RATE ME BUTTON
+// -=-=-=-=-=-=-=-=-=
 
 }])
