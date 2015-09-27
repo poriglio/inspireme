@@ -1,186 +1,133 @@
 <!DOCTYPE html>
-	<html ng-app="quoteModule">
-		
-		<head>
-			<title>Inspire Me!</title>
-			<meta charset="utf-8">
-			<link href="styles.css" rel="stylesheet" type="text/css">
-			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-			<script src="script.js"></script>
-		</head>
+<html ng-app="quoteModule">	
+	<head>
+		<title>Inspire Me!</title>
+		<meta charset="utf-8">
+		<link href="styles.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script src="script.js"></script>
+	</head>
 
-		<body ng-class="backgroundSize" ng-controller="quoteController">
+	<body ng-class="backgroundSize" ng-controller="quoteController">
 
+	<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+	HEADING AND MAIN NAVIGATION
+	-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
-		<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
-		HEADING AND MAIN NAVIGATION
-		-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+		<div class="centering-container content-background">
+			<div class="intro">
+				<h1>Inspire Me!</h1>
+			</div>
+		</div>
+		<div ng-hide="hideHomepage" class="content-background">			
+			<div class="heading-content">
+				<button class="button" ng-click="undoDelete()">Undo</button>
+				<button class="button" ng-click="addQuoteForm()">Submit Quote!</button>
+				<button class="button" ng-click="viewRandom()">View Random</button>
+			</div>
 
-			<div class="centering-container content-background">
-				<div class="intro">
-					<h1>Inspire Me!</h1>
+		<!-- -=-=-=-=-=-=-=-=-=-=-=-=-
+		AUTHOR QUOTE LIST
+		-=-=-=-=-=-=-=-=-=- -->
+
+			<div ng-show="authorShow">
+				<div class="author-heading">
+					<button class="button close-author-button" ng-click="closeAuthor()">X</button>
+					<h2>Quotes by {{author}}</h2>
+				</div>
+				<div class="random-quote quote-display" ng-repeat="quote in authorList">
+					<div>"{{quote.text}}"</div>
+					<button class="button" ng-click="deleteAuthorQuote($index)">Delete Quote</button>
+					<div>Submitted by: {{quote.username}}
+						<div ng-include="'include.html'"></div>
+					</div>
 				</div>
 			</div>
 
-			<div ng-hide="hideHomepage" class="content-background">			
-				<div class="heading-content">
-					<button class="button" ng-click="undoDelete()">Undo</button>
-					<button class="button" ng-click="addQuoteForm()">Submit Quote!</button>
-					<button class="button" ng-click="viewRandom()">View Random</button>
+		<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+		RANDOM QUOTE DISPLAY
+		-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
+			<div class="quote-display random-quote" ng-repeat="random in random" ng-show="randomShown">
+				<div class="align-left">
+					<button class="button"ng-click="closeRandom()">X</button>
 				</div>
-
-
-				<!-- -=-=-=-=-=-=-=-=-=-=-=-=-
-				AUTHOR QUOTE LIST
-				-=-=-=-=-=--=-=-=-=- -->
-
-<div ng-show="authorShow">
-	<div class="author-heading">
-		<button class="button close-author-button" ng-click="closeAuthor()">X</button>
-		<h2>Quotes by {{author}}</h2>
-	</div>
-	<div class="random-quote quote-display" ng-repeat="quote in authorList">
-		<div>"{{quote.text}}"</div>
-		<button class="button" ng-click="deleteAuthorQuote($index)">Delete Quote</button>
-		<div>Submitted by: {{quote.username}}
-					<div class="centering-container">
-						<div class="idle-stars star centering-container">
-							<div ng-click="showStars($index)" ng-repeat="star in idleStars" class="star">
-								<img src="staridle.png">
-								<span>{{star}}</span>
-							</div>
-							<div class="active-stars">
-								<div ng-repeat="starry in quote.stars" class="star" ng-click="showStars($index)" class="centering-container">
-									<img src="staractive.png">
-									<span>{{starry}}</span>
-									<span class="hidden">{{quote.rating}}</span>
-								</div>
-							</div>
-						</div>
-					</div>
-	</div></div></div>
-
-				<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
-				RANDOM QUOTE DISPLAY
-				-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
-
-				<div class="quote-display random-quote" ng-repeat="random in random" ng-show="randomShown">
-					<div class="align-left">
-						<button class="button"ng-click="closeRandom()">X</button>
-					</div>
-					<div>"{{random.text}}"</div>
-					<div class="align-right">-{{random.author}}</div>
-						<div class="centering-container"><button class="button" ng-click="openAuthorRandom($index)"><a href="#">See more quotes by {{random.author}}</a></button>
-						<button class="button" ng-click="deleteRandomQuote()">Delete Quote</button>
-					</div>
-					<div>Submitted by: {{random.username}}</div>
-					<div class="centering-container">
-						<div class="idle-stars star centering-container">
-							<div ng-click="showStars($index)" ng-repeat="star in idleStars" class="star">
-								<img src="staridle.png">
-								<span>{{star}}</span>
-							</div>
-							<div class="active-stars">
-								<div ng-repeat="starry in random.stars" class="star" ng-click="showStars($index)" class="centering-container">
-									<img src="staractive.png">
-									<span>{{starry}}</span>
-									<span class="hidden">{{quote.rating}}</span>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div>"{{random.text}}"</div>
+				<div class="align-right">-{{random.author}}</div>
+				<div class="centering-container">
+					<button class="button" ng-click="openAuthorRandom($index)"><a href="#">See more quotes by {{random.author}}</a></button>
+					<button class="button" ng-click="deleteRandomQuote()">Delete Quote</button>
 				</div>
- 		
-			<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
-			QUOTE SUBMIT FORM
-			-=-=-=-=-=-=-=-=-=-=-=-=-=- -->			
+				<div>Submitted by: {{random.username}}</div>
+				<div ng-include="'include.html'"></div>
+			</div>
+	
+	<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+	QUOTE SUBMIT FORM
+	-=-=-=-=-=-=-=-=-=-=-=-=-=- -->			
 
-				<div class="form-display random-quote" ng-show="formShown">
-					<button class="button" ng-click="closeForm()">X</button>
-					<div class="centering-container">
-						<form>
-							<table>
-								<tr>
-									<td>
-										Your name:
-									</td>
-									<td>
-										<input placeholder="Your name" ng-model="username" type="text">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Quote:
-									</td>
-									<td>
-										<textarea rows="8" class="quoteInput" placeholder="Inspire me!" ng-model="text" type="text"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Author:
-									</td>
-									<td>
-										<input placeholder="Author" ng-model="author" type="text">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Rating:
-									</td>
-									<td>
-										<input placeholder="1, 2, 3, 4, or 5" ng-model="rating" type="text">
-									</td>
-								</tr>
-							</table>
-							<button class="button" ng-click="submitQuote()">Submit</button>
-						</form>
-					</div>
+			<div class="form-display random-quote" ng-show="formShown">
+				<button class="button" ng-click="closeForm()">X</button>
+				<div class="centering-container">
+					<form>
+						<table>
+							<tr>
+								<td>
+									Your name:
+								</td>
+								<td>
+									<input placeholder="Your name" ng-model="username" type="text">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Quote:
+								</td>
+								<td>
+									<textarea rows="8" class="quoteInput" placeholder="Inspire me!" ng-model="text" type="text"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Author:
+								</td>
+								<td>
+									<input placeholder="Author" ng-model="author" type="text">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Rating:
+								</td>
+								<td>
+									<input placeholder="1, 2, 3, 4, or 5" ng-model="rating" type="text">
+								</td>
+							</tr>
+						</table>
+						<button class="button" ng-click="submitQuote()">Submit</button>
+					</form>
 				</div>
+			</div>
 
-				<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
-				MAIN QUOTE
-				-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+		<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
+		MAIN QUOTE
+		-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
-				<div class="quote-display border" ng-repeat="quote in quotes">
-					<div>"{{quote.text}}"</div>
-					<div class="align-right">-{{quote.author}}</div>
-					<div class="centering-container">
-					
+			<div class="quote-display border" ng-repeat="quote in quotes">
+				<div>"{{quote.text}}"</div>
+				<div class="align-right">-{{quote.author}}</div>
+				<div class="centering-container">					
 					<button class="button" ng-click="rateQuote($index)">Rate Quote</button>
 					<div ng-show="ratingBox">		
 						<input ng-model="newRating" class="input-box" placeholder="enter 1,2,3,4, or 5" type="text">
 						<button class="button ok-button" ng-click="submitRating($index)">OK</button>
 					</div>
-
 					<button class="button" ng-click="openAuthor($index)"><a href="#">See more quotes by {{quote.author}}</a></button>
 					<button class="button" ng-click="deleteQuote($index)">Delete Quote</button>
 					<div>Submitted by: {{quote.username}}</div>
-					<div class="centering-container">
-						<div class="idle-stars star centering-container">
-							<div ng-click="showStars($index)" ng-repeat="star in idleStars" class="star">
-								<img src="staridle.png">
-								<span>{{star}}</span>
-							</div>
-							<div class="active-stars">
-								<div ng-repeat="starry in quote.stars" class="star" ng-click="showStars($index)" class="centering-container">
-									<img src="staractive.png">
-									<span>{{starry}}</span>
-									<span class="hidden">{{quote.rating}}</span>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div ng-include="'include.html'"></div>
 				</div>
-
-					<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
-					STAR RATING SYSTEM
-					-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
-
-				</div>		
-			</div>
+			</div>		
 		</div>
-
-
-		</body>
-	</html>
+	</body>
+</html>
