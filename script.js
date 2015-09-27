@@ -46,7 +46,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 
 	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
 
-	$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+	$scope.quotes = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
 			return -1;
 		}
@@ -105,7 +105,7 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.rating = "";
 		$scope.hideHomepage = false;
 		$scope.authorShow = false;
-		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+		$scope.quotes = $scope.quotes.sort(function(a,b){
 			if(a.rating > b.rating){
 				return -1;
 			}
@@ -120,21 +120,36 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	// DELETE QUOTE
 	// -=-=-=-=-=-=-=-=
 
+	var lengthCheck = function(){
+		if($scope.quotes.length === 0 ){
+			$scope.formShown = true;
+		}
+	}
+
 	var deletedQuotes = [];
 
 	$scope.deleteAuthorQuote = function($index){
-		$scope.authorList = $scope.quotes.filter(function(element,index,array){
-			if(element.author === $scope.storeAuthor ){
-				return true
-			}
-		})
+		var author = $scope.authorList[$index].author
+		var index = $scope.authorIndex[$index];
+		$scope.deleteQuote(index);
+		$scope.authorShow = false;
+		if($scope.authorList.length>1){
+			$scope.authorList = $scope.quotes.filter(function(element,index,array){
+				if(element.author === author ){
+					$scope.authorIndex.push(index);
+					return true
+				}
+		$scope.authorShow = true
+			})
+		}
+		lengthCheck()
 	}
 
 	$scope.deleteRandomQuote = function($index){
 		$scope.randomShown = false;
 		$index = $scope.randomIndex;
 		$scope.deleteQuote($index);
-		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+		$scope.quotes = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
 			return -1;
 		}
@@ -142,18 +157,20 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 			return 1;
 		}
 	})
+		lengthCheck()
 	}
 
 	$scope.deleteQuote = function ($index) {
 		deletedQuotes.push($scope.quotes[$index]);
 		$scope.quotes.splice($index,1);
+		lengthCheck()
 	}
 
 	$scope.undoDelete = function ( ) {
 		if(deletedQuotes.length>0){
 		$scope.quotes.push(deletedQuotes[deletedQuotes.length-1]);
 		deletedQuotes.pop();
-		$scope.quotesSorted = $scope.quotes.sort(function(a,b){
+		$scope.quotes = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
 			return -1;
 		}
@@ -174,15 +191,16 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	}
 
 	$scope.openAuthor = function ($index,id) {
+		$scope.authorIndex=[];
 		$location.hash(id);
 		$anchorScroll();
-		$scope.storeAuthor = $scope.quotes[$index].author;
 		$scope.authorShow = true;
 		$scope.formShown = false;
 		$scope.randomShown = false;
 		$scope.author = $scope.quotes[$index].author;
 		$scope.authorList = $scope.quotes.filter(function(element,index,array){
 			if(element.author === array[$index].author ){
+				$scope.authorIndex.push(index);
 				return true
 			}
 		})

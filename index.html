@@ -49,17 +49,17 @@
 		RANDOM QUOTE DISPLAY
 		-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
-			<div class="quote-display random-quote" ng-repeat="random in random" ng-show="randomShown">
+			<div class="quote-display random-quote" ng-repeat="quote in random" ng-show="randomShown">
 				<div class="align-left">
 					<button class="button"ng-click="closeRandom()">X</button>
 				</div>
-				<div>"{{random.text}}"</div>
-				<div class="align-right">-{{random.author}}</div>
+				<div>"{{quote.text}}"</div>
+				<div class="align-right">-{{quote.author}}</div>
 				<div class="centering-container">
-					<button class="button" ng-click="openAuthorRandom($index,'top')">See more quotes by {{random.author}}</button>
+					<button class="button" ng-click="openAuthorRandom($index,'top')">See more quotes by {{quote.author}}</button>
 					<button class="button" ng-click="deleteRandomQuote()">Delete Quote</button>
 				</div>
-				<div>Submitted by: {{random.username}}</div>
+				<div>Submitted by: {{quote.username}}</div>
 				<div ng-include="'include.html'"></div>
 			</div>
 	
