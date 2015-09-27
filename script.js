@@ -1,6 +1,6 @@
 angular.module("quoteModule", [])
 
-angular.module("quoteModule").controller("quoteController",["$scope", "$window", function($scope,$window){
+angular.module("quoteModule").controller("quoteController",["$scope", "$window", "$anchorScroll","$location", function($scope,$window,$anchorScroll,$location){
 
 	var Quote = function (text,author,rating,username,permaIndex) {
 		this.text       = text
@@ -152,7 +152,9 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.openAuthor($index)
 	}
 
-	$scope.openAuthor = function ($index) {
+	$scope.openAuthor = function ($index,id) {
+		$location.hash(id);
+		$anchorScroll();
 		$scope.storeAuthor = $scope.quotes[$index].author;
 		$scope.authorShow = true;
 		$scope.formShown = false;

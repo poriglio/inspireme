@@ -1,12 +1,12 @@
 <div class="centering-container">
 	<div class="idle-stars star centering-container">
 		<div ng-click="showStars($index)" ng-repeat="star in idleStars" class="star">
-			<img src="staridle.png">
+			<img src="staridle.png"></img>
 			<span>{{star}}</span>
 		</div>
 		<div class="active-stars">
-			<div ng-repeat="starry in quote.stars" class="star" ng-click="showStars($index)" class="centering-container">
-				<img src="staractive.png">
+			<div ng-repeat="starry in quote.stars" class="star centering-container" ng-click="showStars($index)">
+				<img src="staractive.png"></img>
 				<span>{{starry}}</span>
 				<span class="hidden">{{quote.rating}}</span>
 			</div>

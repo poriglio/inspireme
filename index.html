@@ -9,6 +9,7 @@
 	</head>
 
 	<body ng-class="backgroundSize" ng-controller="quoteController">
+		 <div id="top"></div>
 
 	<!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-
 	HEADING AND MAIN NAVIGATION
@@ -55,7 +56,7 @@
 				<div>"{{random.text}}"</div>
 				<div class="align-right">-{{random.author}}</div>
 				<div class="centering-container">
-					<button class="button" ng-click="openAuthorRandom($index)"><a href="#">See more quotes by {{random.author}}</a></button>
+					<button class="button" ng-click="openAuthorRandom($index,'top')">See more quotes by {{random.author}}</button>
 					<button class="button" ng-click="deleteRandomQuote()">Delete Quote</button>
 				</div>
 				<div>Submitted by: {{random.username}}</div>
@@ -122,7 +123,7 @@
 						<input ng-model="newRating" class="input-box" placeholder="enter 1,2,3,4, or 5" type="text">
 						<button class="button ok-button" ng-click="submitRating($index)">OK</button>
 					</div>
-					<button class="button" ng-click="openAuthor($index)"><a href="#">See more quotes by {{quote.author}}</a></button>
+					<button class="button" ng-click="openAuthor($index,'top')">See more quotes by {{quote.author}}</button>
 					<button class="button" ng-click="deleteQuote($index)">Delete Quote</button>
 					<div>Submitted by: {{quote.username}}</div>
 					<div ng-include="'include.html'"></div>
