@@ -24,6 +24,7 @@ body{
 	width: 100%;
 	max-width: 670px;
 	margin: auto;
+	padding-bottom: 0.3rem;
 }
 
 .heading-content{

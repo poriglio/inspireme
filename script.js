@@ -55,6 +55,10 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		}
 	})
 
+	// -=-=-=-=-
+	// ADD QUOTE
+	// -=-=-=-=-
+
 	$scope.addQuoteForm = function ( $event ) {
 		$scope.formShown = true;
 		$scope.randomShown = false;
@@ -65,6 +69,10 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.formShown = false;
 		$scope.hideHomepage = false;
 	}
+
+	// 	-=-=-=-=-=-=-=-=-
+	// VIEW RANDOM QUOTE
+	// -=-=-=-=-=-=-=-=-
 
 	$scope.viewRandom = function ( $event ){
 
@@ -82,6 +90,10 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.randomShown = false;
 	}
 
+
+	// -=-=-=-=-=-=-=
+	// SUBMIT QUOTE
+	// -=-=-=-=-=-=-=
 
 	$scope.submitQuote = function ( ) {
 		$scope.formShown = false;
@@ -102,6 +114,11 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 			}
 		})
 	}
+
+
+	// -=-=-=-=-=-=-=-=
+	// DELETE QUOTE
+	// -=-=-=-=-=-=-=-=
 
 	var deletedQuotes = [];
 
@@ -147,6 +164,10 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		}
 	}
 
+	// -=-=-=-=-=-=-=-=
+	// VIEW BY AUTHOR
+	// -=-=-=-=-=-=-=-=
+
 	$scope.openAuthorRandom = function ($index){
 		$index = $scope.randomIndex
 		$scope.openAuthor($index)
@@ -171,15 +192,16 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 		$scope.authorShow = false;
 	}
 
+
+// -=-=-=-=-=-=-=-=-=
+// STAR RATING SYSTEM
+// -=-=-=-=-=-=-=-=-=
+
 	$scope.idleStars = [""," ","  ","   ","    "];
 
 	$scope.showStars = function ($index){
 		$scope.newRating = $index + 1
 	}
-
-// -=-=-=-=-=-=-=
-// RATE ME BUTTON
-// -=-=-=-=-=-=-=
 
 $scope.rateQuote = function ($index){
 	$scope.ratingBox = !$scope.ratingBox
