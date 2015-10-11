@@ -43,8 +43,9 @@ angular.module("quoteModule").controller("quoteController",["$scope", "$window",
 	var default9 = new Quote("I guess when you turn off the main road, you have to be prepared to see some funny houses.","Stephen King",2)
 	var default10 = new Quote("No, it's not a very good story - its author was too busy listening to other voices to listen as closely as he should have to the one coming from inside.","Stephen King",4)
 	var default11 = new Quote("Why is the Internet such a mess?","Raphael",5)
+	var default12 = new Quote("Life is a simple thing. Chocolate: 'yes', everything else: 'maybe.'","Laura",5)
 
-	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11]
+	$scope.quotes = [default1,default2,default3,default4,default5,default6,default7,default8,default9,default10,default11,default12]
 
 	$scope.quotes = $scope.quotes.sort(function(a,b){
 		if(a.rating > b.rating){
